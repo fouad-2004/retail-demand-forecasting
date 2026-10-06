@@ -65,7 +65,7 @@ The product shortlist used transactions before 3 October 2011, including the val
 |---|---:|---:|
 | Linear regression | 176.22 | 355.10 |
 | Six-week moving average | 177.21 | 345.91 |
-
+![Actual sales versus one-week-ahead forecasts](outputs/test_forecasts.png)
 MAE is the average absolute difference between predicted and actual sales, measured in units. Lower is better; it is not an accuracy percentage.
 
 Regression's validation advantage was less than one unit of MAE. The six-week baseline performed slightly better on the later test period. These small evaluation samples do not establish a consistent advantage for either method.
