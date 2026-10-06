@@ -84,7 +84,7 @@ The high-sales weeks ending 6 and 20 November account for approximately **63%** 
 |---|---|
 | `forecasting.py` | Cleaning, weekly aggregation, walk-forward forecasts, and paired MAE scoring |
 | `retail_dashboard.py` | Streamlit interface and invoice analysis |
-| `01_explore_data.ipynb` | Original experiment and learning notes; use your actual notebook filename if different |
+| `01_explore_data.ipynb` | Original experiment and learning notes |
 | `02_reusable_pipeline.ipynb` | Reproducible workflow using the Python module |
 | `requirements.txt` | Dependency versions from the working project environment |
 | `data/Online Retail.xlsx` | Locally downloaded source dataset |
@@ -94,28 +94,31 @@ The reusable module exposes `clean_transactions`, `build_weekly_sales`, `walk_fo
 
 ## Run locally
 
-Use the same Python environment in which the project was verified. From the project folder:
+The recorded environment uses Python 3.14. Clone the repository and run the installation and launch commands from its root directory:
+
+```bash
+git clone https://github.com/fouad-2004/retail-demand-forecasting.git
+cd retail-demand-forecasting
+```
+
+Download the Excel dataset from [UCI Online Retail](https://archive.ics.uci.edu/dataset/352/online+retail), create a `data` folder, and save it as `data/Online Retail.xlsx`. The source Excel file is excluded from Git tracking.
 
 ```bash
 python -m pip install -r requirements.txt
 python -m streamlit run retail_dashboard.py
 ```
 
-If you have not yet created `requirements.txt`, the runtime and notebook dependencies are:
-
-```bash
-python -m pip install pandas scikit-learn streamlit plotly openpyxl matplotlib ipykernel
-```
-
-Then launch the dashboard with the command above. Keep `forecasting.py` beside `retail_dashboard.py` and place the original dataset in the `data` directory.
+To reproduce the experiment, run `02_reusable_pipeline.ipynb` from top to bottom using that Python environment. The first notebook records the original exploration and baseline comparisons.
 
 ## Reproducibility checks
 
+These checks were performed during development; automated test files are not included in this repository.
+
 - The function-based weekly series and test predictions matched the original notebook outputs.
-- The original notebook and reusable pipeline were reported to run successfully from the beginning, reproducing the recorded scores.
+- Both notebooks were run from the beginning in the development environment and reproduced the recorded scores.
 - The helper module was checked using synthetic examples for calendar boundaries, preserving source data, unknown-week handling, isolation from future observations, and paired scoring.
 - Dashboard checks with synthetic data covered the missing-file screen, evaluation-period selection, product switching, and eight/nine-week scoring.
-- The dashboard was reported to work locally with the actual dataset.
+- The dashboard was run locally with the original dataset.
 
 ## Limitations
 
@@ -130,10 +133,3 @@ Then launch the dashboard with the command above. Keep `forecasting.py` beside `
 ## Possible next steps
 
 Collect additional history or another evaluation dataset; investigate duplicate sensitivity; examine performance across a predefined product set; and incorporate inventory or promotion information if available before each forecast date.
-
-## CV wording after publishing the repository
-
-- Developed a Python/Streamlit retail sales forecasting dashboard using a 541,909-row transaction dataset, lag features, and chronological walk-forward evaluation.
-- Compared linear regression with moving-average baselines and investigated forecast errors through invoice-level analysis of large sales spikes.
-
-Add the repository link to the project entry. Do not claim a test-set improvement from regression: the six-week baseline achieved the lower test MAE in this experiment.
