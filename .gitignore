@@ -1,0 +1,15 @@
+# Python environments
+.venv/
+venv/
+
+# Generated Python and notebook files
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Downloaded dataset
+*.xlsx
+
+# Local environment settings
+.env
+.env.*
